@@ -1,23 +1,18 @@
-import http from 'http';
-import '../dist/index.js';
+import request from 'supertest';
+import app from '../lib/config/server.js';
 
-describe('Example Express Server', () => {
+describe('Express Server', () => {
 
-  it('should return 200', done => {
-
-    http.get('http://localhost:3000/', res => {
-      expect(res.statusCode).to.equal(200);
-      done()
+    it('should return 200', () => {
+        request(app.listen(3000)).get('/').then( (result) => {
+            expect(result.statusCode).to.equal(200)
+        });
     });
 
-  });
-
-  it('should not error', done => {
-
-    http.get('http://localhost:3000/', res => {
-      expect(res.statusCode).not.to.equal(404);
-      done()
+    it('should not error', () => {
+        request(app.listen(3000)).get('/').then( (result) => {
+            expect(result.statusCode).to.not.equal(404);
+        });
     });
 
-  });
 });

@@ -7,9 +7,5 @@
 
 
 ### instructions:
-`npm run populate` populates database from a CSV and defines sequelize models
-
-`npm run test` runs unit tests
-
-`npm run start` starts the application on port XXXX
+rewrite me.
 
