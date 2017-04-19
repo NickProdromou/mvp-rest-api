@@ -7,11 +7,14 @@
     "clean": "rm -r dist",
     "predev": "npm run build",
     "dev": "NODE_ENV=DEVELOPMENT nodemon lib/start.js --exec babel-node",
+    "populate": "NODE_ENV=DEVELOPMENT nodemon writeDb/pushData.js --exec babel-node",
+    "generate": "NODE_ENV=DEVELOPMENT nodemon writeDb/generateTemplates.js --exec babel-node",
     "build": "babel lib -d dist",
     "prod": "NODE_ENV=PRODUCTION npm run serve",
     "serve": "node dist/index.js",
     "test": "NODE_ENV=DEVELOPMENT mocha --recursive --compilers js:babel-register --require ./test/setup.js",
-    "lint": "eslint lib"
+    "lint": "eslint lib",
+    "lint:db": "eslint writeDb"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +34,8 @@
   "devDependencies": {
     "babel-register": "^6.24.0",
     "chai": "^4.0.0-canary.1",
+    "chai-arrays": "0.0.1",
+    "csv-parse": "^1.2.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",
     "eslint-plugin-import": "^2.2.0",
