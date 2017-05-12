@@ -27,6 +27,7 @@
     "body-parser": "^1.17.1",
     "dot-env": "0.0.1",
     "express": "^4.15.2",
+    "express-error-handler": "^1.1.0",
     "mysql": "^2.13.0",
     "sequelize": "^3.30.4",
     "winston": "^2.3.1"

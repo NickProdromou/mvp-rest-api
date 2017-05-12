@@ -2,6 +2,7 @@ import db from '../lib/config/db';
 import generateDataFromCsv from './methods/generateDataFromCsv';
 import getTableRows from './methods/getTableRows';
 import compare from './methods/compare';
+import parsify from './methods/parsify';
 import logger from './methods/instantiateLogger';
 
 if (!process.argv[2]) {
@@ -13,10 +14,8 @@ const csv = generateDataFromCsv(`./writeDb/input/${tableName}.csv`);
 
 csv.then((csvData) => {
     db.sequelize.query({query: `SHOW COLUMNS from ${tableName}`, raw:true})
-        .then((res) => {
-            return JSON.parse(JSON.stringify(res));
-        }).then((parsedResponse) => {
-            return compare(getTableRows(parsedResponse.pop(), tableName), Object.keys(csvData[1]));
+        .then(parsify).then((parsedResponse) => {
+            return compare(getTableRows(parsedResponse.pop(), tableName), Object.keys(csvData[0]));
         })
         .then((isSame) => {
 
